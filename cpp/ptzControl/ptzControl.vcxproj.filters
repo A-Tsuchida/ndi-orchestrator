@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="headers/framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="headers/pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ptzCamera.h">
+    <ClInclude Include="headers/ptzCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
