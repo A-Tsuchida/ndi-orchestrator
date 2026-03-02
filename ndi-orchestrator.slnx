@@ -7,4 +7,7 @@
   <Folder Name="/cpp/">
     <Project Path="cpp/ptzControl/ptzControl.vcxproj" Id="0835df9d-35bc-471b-9445-6ac2c5c122c1" />
   </Folder>
+  <Folder Name="/cs/">
+    <Project Path="cs/ndiWrapper/ndiWrapper.csproj" Id="1c0f26bb-e0ba-4508-8b51-6659ef411d8f" />
+  </Folder>
 </Solution>
