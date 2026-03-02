@@ -5,6 +5,7 @@
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/cpp/">
+    <Project Path="cpp/ConsoleControl/ConsoleControl.vcxproj" Id="b2fa8ad0-eaf3-4dac-a9f7-51319d28e21e" />
     <Project Path="cpp/ptzControl/ptzControl.vcxproj" Id="0835df9d-35bc-471b-9445-6ac2c5c122c1" />
   </Folder>
   <Folder Name="/cs/">
