@@ -1,5 +1,5 @@
-#include "pch.h"
-#include "ptzCamera.h"
+#include "headers/pch.h"
+#include "headers/ptzCamera.h"
 
 #include <Processing.NDI.Lib.h>
 
