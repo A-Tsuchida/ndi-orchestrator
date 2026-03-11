@@ -3,41 +3,6 @@ using System.Runtime.InteropServices;
 
 namespace ndiWrapper.Interop;
 
-[StructLayout(LayoutKind.Sequential)]
-internal struct NdiSourceNative
-{
-    public IntPtr NdiName;
-    public IntPtr UrlAddress;
-}
-
-[StructLayout(LayoutKind.Sequential)]
-internal struct NdiFindCreateNative
-{
-    [MarshalAs(UnmanagedType.U1)]
-    public bool ShowLocalSources;
-    public IntPtr Groups;
-    public IntPtr ExtraIps;
-}
-
-[StructLayout(LayoutKind.Sequential)]
-internal struct NdiRecvCreateNative
-{
-    public NdiSourceNative Source;
-    public int ColorFormat;
-    public int Bandwidth;
-    [MarshalAs(UnmanagedType.U1)]
-    public bool AllowVideoFields;
-    public IntPtr RecvName;
-}
-
-[StructLayout(LayoutKind.Sequential)]
-internal struct NdiMetadataFrameNative
-{
-    public int Length;
-    public long Timecode;
-    public IntPtr Data;
-}
-
 internal static class NdiLib
 {
     private const string LibraryName = "NDIPTZLib";
