@@ -10,5 +10,6 @@
   </Folder>
   <Folder Name="/cs/">
     <Project Path="cs/ndiWrapper/ndiWrapper.csproj" Id="1c0f26bb-e0ba-4508-8b51-6659ef411d8f" />
+    <Project Path="LibTest/LibTest.csproj" Id="d19fc9b9-e7d1-439b-9743-420f61182a23" />
   </Folder>
 </Solution>
