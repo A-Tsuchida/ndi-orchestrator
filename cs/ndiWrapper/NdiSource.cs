@@ -11,7 +11,7 @@ public sealed class NdiSource
     /// <summary>Network URL/address of the source. May be null if not yet resolved.</summary>
     public string? UrlAddress { get; }
 
-    internal NdiSource(string name, string? urlAddress)
+    public NdiSource(string name, string? urlAddress)
     {
         Name = name;
         UrlAddress = urlAddress;
