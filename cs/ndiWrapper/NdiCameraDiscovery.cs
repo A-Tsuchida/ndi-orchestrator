@@ -20,18 +20,18 @@ public static class NdiCameraDiscovery
     public static IReadOnlyList<NdiSource> Discover(
         TimeSpan timeout,
         bool showLocalSources = true,
-        string? groups = null,
-        string? extraIps = null)
+        string[]? groups = null,
+        string[]? extraIps = null)
     {
         var groupsPtr = IntPtr.Zero;
         var extraIpsPtr = IntPtr.Zero;
 
         try
         {
-            if (groups is not null)
-                groupsPtr = StringToUtf8(groups);
-            if (extraIps is not null)
-                extraIpsPtr = StringToUtf8(extraIps);
+            if (groups is { })
+                groupsPtr = StringToUtf8(string.Join(", ", groups));
+            if (extraIps is { })
+                extraIpsPtr = StringToUtf8(string.Join(", ", extraIps));
 
             var createSettings = new NdiFindCreateNative
             {
@@ -68,8 +68,8 @@ public static class NdiCameraDiscovery
     public static Task<IReadOnlyList<NdiSource>> DiscoverAsync(
         TimeSpan timeout,
         bool showLocalSources = true,
-        string? groups = null,
-        string? extraIps = null,
+        string[]? groups = null,
+        string[]? extraIps = null,
         CancellationToken cancellationToken = default)
     {
         return Task.Run(() => Discover(timeout, showLocalSources, groups, extraIps), cancellationToken);
