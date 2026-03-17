@@ -54,7 +54,9 @@ static void DoControl(ndiWrapper.NdiSource source)
   var state = camera.TryReceiveMetadata(500);
   Console.WriteLine("Current state: {0}", state);
 
-  (float pan, float tilt) prev = (0f, 0f);
+  (float pan, float tilt) prevPos = (0f, 0f);
+  float prevZoom = 0f;
+  float prevFocus = 0f;
   
   var inputHandle = GetStdHandle(-10); // STD_INPUT_HANDLE
 
@@ -62,17 +64,31 @@ static void DoControl(ndiWrapper.NdiSource source)
   {
     // Track held keys
     var heldKeys = GetKeys(inputHandle);
-    float pan = 0f, tilt = 0f;
-    if (heldKeys.Contains(ConsoleKey.W)) tilt += 0.5f;
-    if (heldKeys.Contains(ConsoleKey.S)) tilt -= 0.5f;
-    if (heldKeys.Contains(ConsoleKey.A)) pan -= 0.5f;
-    if (heldKeys.Contains(ConsoleKey.D)) pan += 0.5f;
+    float pan = 0f, tilt = 0f, zoom = 0f, focus = 0f;
+    
+    if (heldKeys.Contains(ConsoleKey.W)) tilt += 5f;
+    if (heldKeys.Contains(ConsoleKey.S)) tilt -= 5f;
+    if (heldKeys.Contains(ConsoleKey.A)) pan -= 5f;
+    if (heldKeys.Contains(ConsoleKey.D)) pan += 5f;
+    if (heldKeys.Contains(ConsoleKey.U)) zoom += 1f;
+    if (heldKeys.Contains(ConsoleKey.I)) zoom += 1f;
+    if (heldKeys.Contains(ConsoleKey.J)) focus += 1f;
+    if (heldKeys.Contains(ConsoleKey.K)) focus += 1f;
 
-    if (prev.pan != pan || prev.tilt != tilt)
+    if (prevPos.pan != pan || prevPos.tilt != tilt)
     {
-      Console.WriteLine("Pan: {0} | Tilt: {1}", pan, tilt);
       camera.PanTiltSpeed(pan, tilt);
-      prev = (pan, tilt);
+      prevPos = (pan, tilt);
+    }
+    if (zoom != prevZoom)
+    {
+      camera.ZoomSpeed(zoom);
+      prevZoom = zoom;
+    }
+    if (focus != prevFocus)
+    {
+      camera.FocusSpeed(focus);
+      prevFocus = focus;
     }
 
     Thread.Sleep(16); // ~60 polls/sec
