@@ -6,10 +6,6 @@ if (!ndiWrapper.NdiLibrary.Initialize())
   Environment.Exit(1);
 }
 
-DoControl();
-
-static void DoDiscovery()
-{
   var limit = 10;
   Console.WriteLine("Looking for NDI sources for up to {0} seconds...", limit);
 
@@ -17,15 +13,42 @@ static void DoDiscovery()
 
   Console.WriteLine("Found {0} sources:", res.Count);
 
-  foreach (var item in res)
+Console.WriteLine("Select the device do you want to control:");
+int opt = 0;
+ConsoleKey key;
+
+while (true)
   {
-    Console.WriteLine("{0}@{1}", item.Name, item.UrlAddress);
+  for (var i = 0; i < res.Count; i++)
+  {
+    if (i == opt)
+    {
+      Console.BackgroundColor = ConsoleColor.Gray;
+      Console.ForegroundColor = ConsoleColor.Black;
   }
+    Console.WriteLine("{0}@{1}", res[i].Name, res[i].UrlAddress);
+    Console.ResetColor();
+}
+  switch (Console.ReadKey(true).Key)
+  {
+    case ConsoleKey.UpArrow:
+      if (opt > 0) opt -= 1;
+      break;
+    case ConsoleKey.DownArrow:
+      if (opt < res.Count - 1) opt += 1;
+      break;
+    case ConsoleKey.Enter:
+      DoControl(res[opt]);
+      return;
+  }
+
+  var (left, top) = Console.GetCursorPosition();
+  Console.SetCursorPosition(left, top - res.Count);
 }
 
-static void DoControl()
+static void DoControl(ndiWrapper.NdiSource source)
 {
-  var source = new ndiWrapper.NdiSource("XC-446961 (Virtual PTZ Camera)", "169.254.201.128:5961");
+  Console.Clear();
   var camera = new ndiWrapper.NdiPtzCamera(source);
 
   var state = camera.TryReceiveMetadata(500);
