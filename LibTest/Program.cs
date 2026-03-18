@@ -17,7 +17,7 @@ Console.WriteLine("Select the device do you want to control:");
 int opt = 0;
 ConsoleKey key;
 
-while (true)
+do
   {
   for (var i = 0; i < res.Count; i++)
   {
@@ -29,7 +29,7 @@ while (true)
     Console.WriteLine("{0}@{1}", res[i].Name, res[i].UrlAddress);
     Console.ResetColor();
 }
-  switch (Console.ReadKey(true).Key)
+  switch (key = Console.ReadKey(true).Key)
   {
     case ConsoleKey.UpArrow:
       if (opt > 0) opt -= 1;
@@ -39,12 +39,12 @@ while (true)
       break;
     case ConsoleKey.Enter:
       DoControl(res[opt]);
-      return;
+      break;
   }
 
   var (left, top) = Console.GetCursorPosition();
   Console.SetCursorPosition(left, top - res.Count);
-}
+} while (key != ConsoleKey.Enter);
 
 static void DoControl(ndiWrapper.NdiSource source)
 {
