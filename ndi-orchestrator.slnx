@@ -2,12 +2,6 @@
   <Configurations>
     <Platform Name="x64" />
   </Configurations>
-  <Folder Name="/cpp/">
-    <Project Path="cpp/ConsoleControl/ConsoleControl.vcxproj" Id="b2fa8ad0-eaf3-4dac-a9f7-51319d28e21e" />
-    <Project Path="cpp/ptzControl/ptzControl.vcxproj" Id="0835df9d-35bc-471b-9445-6ac2c5c122c1" />
-  </Folder>
-  <Folder Name="/cs/">
-    <Project Path="cs/ndiWrapper/ndiWrapper.csproj" Id="1c0f26bb-e0ba-4508-8b51-6659ef411d8f" />
-    <Project Path="LibTest/LibTest.csproj" Id="d19fc9b9-e7d1-439b-9743-420f61182a23" />
-  </Folder>
+  <Project Path="ndiWrapper/ndiWrapper.csproj" Id="1c0f26bb-e0ba-4508-8b51-6659ef411d8f" />
+  <Project Path="LibTest/LibTest.csproj" Id="d19fc9b9-e7d1-439b-9743-420f61182a23" />
 </Solution>
